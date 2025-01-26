@@ -46,6 +46,9 @@ const TicTacToe = () => {
     }
     return null;
   };
+  const handleReset =()=>{
+    setBoard(Array(9).fill(null))
+  }
 
   return (
     <>
@@ -66,6 +69,7 @@ const TicTacToe = () => {
           {renderSquare(8)}
         </div>
       </div>
+      <button onClick={handleReset}>Reset</button>
       {
         winner && <div>{winner} is winner of this game</div>
       }
