@@ -1,14 +1,136 @@
-.board{
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #e66465, #9198e5);
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
-.board-row{
-  display: flex;
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6); /* সাদা শেড */
+  z-index: -1;
 }
-.square{
-  height: 50px;
-  width: 50px;
-  margin: 1px;
-  font-size: 24px;
+
+.game-container {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8); /* ব্ল্যাক ব্যাকগ্রাউন্ড */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.player-info input {
+  margin: 10px 5px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.player-info input:focus {
+  border-color: #4e54c8;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px); /* মোবাইলে ছোট সাইজ */
+  grid-gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.square {
+  width: 80px; /* মোবাইলে ছোট সাইজ */
+  height: 80px; /* মোবাইলে ছোট সাইজ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid black; /* ব্ল্যাক বর্ডার */
+  background: white; /* সাদা বক্স */
+  color: #333; /* কালো লেখার রঙ */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.square:hover {
+  background: #f2f2f2; /* হোভার করলে হালকা ধূসর */
+  transform: scale(1.1);
+}
+
+.winner-square {
+  border-color: #ff5252;
+  background: #ffcccc;
+}
+
+.winner-message,
+.draw-message {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: #4e54c8;
+  animation: fadeIn 1s ease-in-out, bounce 1s infinite alternate;
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #4e54c8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reset-button:hover {
+  background: #3c42a7;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* ডেক্সটপে বড় সাইজ */
+  .board {
+    grid-template-columns: repeat(3, 100px);
+  }
+
+  .square {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
 }
