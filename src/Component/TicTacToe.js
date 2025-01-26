@@ -1,12 +1,20 @@
-import React from "react";
-
+import React, { useState } from "react";
+ 
 const TicTacToe = () => {
+  const[board,setBoard]=useState(Array(9).fill(null));
+  const[isXTrun,setIsXTrun]=useState(true);
+
   const renderSquare = (index) => {
-    return <button className="square" onClick={()=>handleClick(index)}></button>;
+    return <button className="square" onClick={()=>handleClick(index)}>{board[index]}</button>;
   };
   const handleClick =(index)=>{
     console.log(index)
+    const newBoard =[...board];
+    newBoard[index]= isXTrun ? 'X' : 'O';
+    setBoard(newBoard);
+    setIsXTrun(!isXTrun)
   }
+  
   return (
     <div className="board">
       <div className="board-row">
